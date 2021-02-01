@@ -1,0 +1,59 @@
+server:
+  port: 6431
+  servlet:
+    context-path: /api
+  tomcat:
+    max-threads: 200
+    max-connections: 1000
+spring.profiles.active: local
+
+project.name: LOCAL-CYBERTON-API #在阿里云控制台展示的控制名
+
+spring.datasource.druid.web-stat-filter.enabled: false
+
+logging:
+  level:
+    com.xjt.mutilevel: debug
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+## Mybatis-plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:/mybatis/*.xml
+
+pagehelper:
+  reasonable: false # 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据
+  support-methods-arguments: true
+  params: count=countSql
+  row-bounds-with-count: true
+  helper-dialect: mysql
+
+datasource.more: true
+
+spring:
+  application:
+    name: LOCAL-CACHE-API
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/user?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password:
+  datasource2:
+    url: jdbc:mysql://127.0.0.1:3307/user?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    database: 11
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 20
+      min-idle: 0
+  cache:
+    type: redis
